@@ -258,9 +258,9 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => 'dashboard',
-    'logout_url' => 'auth/logout',
-    'login_url' => 'auth/login',
-    'register_url' => 'auth/register',
+    'logout_url' => 'logout',
+    'login_url' => 'login',
+    'register_url' => 'register',
     'password_reset_url' => null,
     'password_email_url' => null,
     'profile_url' => false,
