@@ -313,13 +313,13 @@ return [
         // Sidebar items:
         [
             'text' => 'Tiendas',
-            'icon' => 'fas fa-store',   // ícono de tienda
-            'url'  => '#',              // luego lo cambias por la ruta real
+            'icon' => 'fas fa-store',
+            'route'  => 'shop.index',
         ],
         [
             'text' => 'Productos',
-            'icon' => 'fas fa-boxes',   // ícono de cajas/productos
-            'url'  => '#',
+            'icon' => 'fas fa-boxes',
+            'route'  => 'product.index',
         ],
         [
             'text' => 'Pedidos',

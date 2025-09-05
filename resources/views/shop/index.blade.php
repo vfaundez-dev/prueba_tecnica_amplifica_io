@@ -23,9 +23,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Dominio</th>
-                    <th>Tipo</th>
+                    <th>URL</th>
+                    <th>Origen</th>
                     <th>Creada</th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                 @isset($shops)
                 @forelse($shops as $shop)
                 <tr>
+                    <td>{{ $shop->id }}</td>
                     <td>{{ $shop->name }}</td>
                     <td>{{ $shop->url }}</td>
                     <td>{{ ucfirst($shop->platform) }}</td>
