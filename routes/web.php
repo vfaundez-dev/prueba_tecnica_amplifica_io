@@ -8,6 +8,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -23,8 +24,13 @@ Route::controller(AuthController::class)->group(function () {
 // Protected Routes
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Dashboard Routes
+    Route::controller(Dashboard::class)->prefix('shops')->group(function () {
+        Route::get('/', 'index')->name('dashboard.index');
+    });
     
     // Shop Routes
     Route::controller(ShopController::class)->prefix('shops')->group(function () {
