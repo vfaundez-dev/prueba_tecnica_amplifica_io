@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class ProductController extends Controller {
+class OrderController extends Controller {
     
     public function index() {
         $shops = Shop::where( 'user_id', Auth::id() )->get();
-        return view('product.index', compact('shops'));
+        return view('order.index', compact('shops'));
     }
 
     public function getAll(Request $request) {
@@ -26,18 +26,18 @@ class ProductController extends Controller {
                 ->first();
             
             if (!$shop) {
-                return redirect()->route('product.index')->with('error', 'Tienda no encontrada o no autorizada.');
+                return redirect()->route('order.index')->with('error', 'Tienda no encontrada o no autorizada.');
             }
 
             $shops = Shop::where( 'user_id', Auth::id() )->get();
-            $products = $this->getDataApi($shop);
-            session(['export_products' => $products]);
+            $orders = $this->getDataApi($shop);
+            session(['export_orders' => $orders]);
 
-            return view('product.index', compact('shops', 'products', 'shop_id'));
+            return view('order.index', compact('shops', 'orders', 'shop_id'));
                 
         } catch (\Throwable $th) {
-            Log::error('ProductController getAll error: ' . $th->getMessage());
-            return redirect()->route('product.index')->with('error', 'Ocurrió un error al obtener los productos.');
+            Log::error('OrderController getAll error: ' . $th->getMessage());
+            return redirect()->route('order.index')->with('error', 'Ocurrió un error al obtener los pedidos.');
         }
     }
 
@@ -50,12 +50,11 @@ class ProductController extends Controller {
                 ? new \App\Services\Ecommerce\ShopifyClient( $shop->url, $shop->access_token, '2025-07' )
                 : new \App\Services\Ecommerce\WooCommerceClient( $shop->url, $shop->api_key, $shop->api_secret );
 
-            return $client->getProducts();
+            return $client->getOrders();
 
         } catch (\Throwable $th) {
-            Log::error('ProductController getDataApi error: ' . $th->getMessage());
+            Log::error('OrderController getDataApi error: ' . $th->getMessage());
             return [];
         }
     }
-
 }

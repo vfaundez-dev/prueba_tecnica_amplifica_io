@@ -324,7 +324,7 @@ return [
         [
             'text' => 'Pedidos',
             'icon' => 'fas fa-shopping-cart', // ícono carrito
-            'url'  => '#',
+            'route'  => 'order.index',
         ],
     ],
 

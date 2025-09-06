@@ -4,6 +4,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 
@@ -34,6 +36,18 @@ Route::middleware('auth')->group(function () {
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('/', 'index')->name('product.index');
         Route::post('/all', 'getAll')->name('product.getAll');
+    });
+
+    // Orders Routes
+    Route::controller(OrderController::class)->prefix('orders')->group(function () {
+        Route::get('/', 'index')->name('order.index');
+        Route::post('/all', 'getAll')->name('order.getAll');
+    });
+
+    // Export Routes
+    Route::controller(ExportController::class)->prefix('export')->group(function () {
+        Route::get('/products', 'products')->name('export.products');
+        Route::get('/orders', 'orders')->name('export.orders');
     });
 
 });

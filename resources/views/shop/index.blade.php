@@ -20,6 +20,10 @@
             <x-adminlte-alert theme="danger" title="{{ session('error') }}" />
         @endif
 
+        @if(session('info'))
+            <x-adminlte-alert theme="info" title="{{ session('info') }}" />
+        @endif
+
         <table class="table table-bordered">
             <thead>
                 <tr>

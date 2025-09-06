@@ -23,6 +23,11 @@
                             Consultar Productos
                         </button>
                     </div>
+                    @if(isset($products))
+                        <a href="{{ route('export.products') }}" class="btn btn-success ml-2">
+                            Exportar
+                        </a>
+                    @endif
                 </div>
             </form>
         </div>
@@ -33,6 +38,10 @@
 
             @if(session('error'))
                 <x-adminlte-alert theme="danger" title="{{ session('error') }}" />
+            @endif
+
+            @if(session('info'))
+                <x-adminlte-alert theme="info" title="{{ session('info') }}" />
             @endif
 
             @if( isset($products) )
