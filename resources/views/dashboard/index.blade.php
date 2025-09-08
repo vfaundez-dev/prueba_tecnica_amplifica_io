@@ -194,11 +194,29 @@
                 options: {
                     responsive: true,
                     scales: {
-                        y: {
-                            beginAtZero: true,
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function(value) {
+                                    return '$ ' + Number(value).toLocaleString('es-CL');
+                                }
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                const value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                return 'Ventas: $ ' + Number(value).toLocaleString('es-CL');
+                            }
                         }
                     }
-                },
+                }
             });
         </script>
     @endif

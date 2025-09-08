@@ -79,11 +79,12 @@ class DashboardController extends Controller {
 
         foreach ($this->orders as $order) {
             $month = date('Y-m', strtotime($order['created_at']));
-            $price = $order['total_price'] ?? 0;
+            $price = isset($order['total_price']) ? (float) $order['total_price'] : 0;
+
             $sales[$month] = ($sales[$month] ?? 0) + $price;
         }
 
-        return $sales;
+        return array_map('floatval', $sales);
     }
 
     private function getPendingOrders(): int {
