@@ -312,6 +312,11 @@ return [
 
         // Sidebar items:
         [
+            'text' => 'Dashboard',
+            'icon' => 'fas fa-tachometer-alt',
+            'route'  => 'dashboard.index',
+        ],
+        [
             'text' => 'Tiendas',
             'icon' => 'fas fa-store',
             'route'  => 'shop.index',

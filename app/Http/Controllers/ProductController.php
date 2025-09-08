@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller {
     
     public function index() {
-        $shops = Shop::where( 'user_id', Auth::id() )->get();
+        $shops = Auth::user()->shops;
         return view('product.index', compact('shops'));
     }
 

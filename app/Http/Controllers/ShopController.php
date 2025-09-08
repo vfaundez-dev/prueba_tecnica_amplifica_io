@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class ShopController extends Controller {
     
     public function index() {
-        $shops = Shop::where('user_id', Auth::id())->get();
+        $shops = Auth::user()->shops;
         return view('shop.index', compact('shops'));
     }
 
@@ -35,14 +35,5 @@ class ShopController extends Controller {
             return redirect()->route('shop.index')->with('error', 'Ocurrió un error al agregar la tienda.');
         }
     }
-
-    /*-- METODOS PARA LAS API EXTERNAS (SHOPIFY, WOOCOMMERCE, ETC) --*/
-
-    
-
-
-
-
-
 
 }

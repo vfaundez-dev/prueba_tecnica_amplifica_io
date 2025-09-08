@@ -52,7 +52,18 @@
       Prueba Tecnica desarrollada por <strong class="text-primary">Vladimir Faundez H.</strong> para la empresa <strong class="text-primary">Amplifica I/O</strong>.
     </h4>
 
-    <footer class="mt-5 text-muted small">
+    @auth
+        <a href="{{ route('dashboard.index') }}" class="btn btn-primary mt-5">
+            Ir a Dashboard
+        </a>
+    @else
+        <a href="{{ route('login') }}" class="btn btn-primary mt-5">
+            Inicia Sesión
+        </a>
+    @endAuth
+    
+
+    <footer class="mt-4 text-muted small">
       <p class="mb-1">Created by Vladimir Faundez H.</p>
       <p>&copy; {{ date('Y') }} VFH DEV. All rights reserved.</p>
     </footer>
