@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     // Dashboard Routes
     Route::controller(DashboardController::class)->prefix('dashboard')->group(function () {
         Route::get('/', 'index')->name('dashboard.index');
+        Route::post('/metrics', 'metrics')->name('dashboard.metrics');
     });
     
     // Shop Routes
